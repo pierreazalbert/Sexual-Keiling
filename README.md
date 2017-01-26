@@ -16,8 +16,6 @@ Micropython documentation for ESP8266: https://docs.micropython.org/en/latest/es
 - 2nd Feb: Lab on wifi
 - 9th Feb: demo of project
 - 16th Feb : submit code and website
- 
- Deadline for IoT device (1st coursework): 20th Feb 2017
 
 ### Our ideas for an IoT device:
 - holiday home environment control (prevent mould etc)
