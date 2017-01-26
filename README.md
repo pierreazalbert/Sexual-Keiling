@@ -1,7 +1,9 @@
 # Sexual-Keiling
 EE3-24 Embedded Systems - Lloyd Abbott, Pierre Azalbert, Jukka Hertzog, Periklis Korkontzelos
 
-We have a temperature + humidity sensor. 
+We have a temperature + humidity sensor that we can use with the Adafruit Huzzah Feather board.
+The board contains an ESP8266 chip with MicroPython on it.
+Micropython documentation for ESP8266: https://docs.micropython.org/en/latest/esp8266/index.html
 
 Timetable for IoT project:
 - 2nd Feb: Lab on wifi
