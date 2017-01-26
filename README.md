@@ -12,12 +12,12 @@ Micropython documentation for ESP8266: https://docs.micropython.org/en/latest/es
 - Code submission via GitHub
 - Website* marketing concept for product
 
-### Timetable:
+### Timetable
 - 2nd Feb: Lab on wifi
 - 9th Feb: demo of project
 - 16th Feb : submit code and website
 
-### Our ideas for an IoT device:
+### Our ideas for an IoT device
 - holiday home environment control (prevent mould etc)
 - wood drying monitor (for fireplaces)
 - pantry monitoring
