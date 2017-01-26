@@ -20,7 +20,7 @@ Our ideas for an IoT device:
 - sauna monitoring
 - body heat (sweat)
 - baby incubator
-- baby cradle monitor
+- baby cradle monitor (https://blog.withings.com/2012/03/30/why-is-measuring-the-humidity-level-in-a-room-important-for-a-baby-2/)
 - tobacco storage (humidor)
 - shoe fungus prevention
 - home brewing, fermenting (yoghurt, etc)
