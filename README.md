@@ -33,3 +33,9 @@ Micropython documentation for ESP8266: https://docs.micropython.org/en/latest/es
 - biological petri dish monitor
 - fan-hat
 
+### Useful Links
+MicroPy guide for ESP2866 (http://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html)
+ESP8266 SparkFun Page w/ useful links (https://www.sparkfun.com/products/13678)
+Feather Huzzah Guide (https://learn.adafruit.com/adafruit-feather-huzzah-esp8266?view=all)
+Sensor documentation (https://cdn.sparkfun.com/datasheets/Sensors/Weather/Si7021.pdf)
+Sensor SparkFun Page w/ useful links (https://learn.sparkfun.com/tutorials/si7021-humidity-and-temperature-sensor-hookup-guide)
