@@ -3,8 +3,7 @@ EE3-24 Embedded Systems - Lloyd Abbott, Pierre Azalbert, Jukka Hertzog, Periklis
 
 ## Coursework 1 - IoT project
 
-We have a temperature + humidity sensor that we can use with the Adafruit Huzzah Feather board (https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview). The board contains an ESP8266 chip with MicroPython on it.
-Micropython documentation for ESP8266: https://docs.micropython.org/en/latest/esp8266/index.html
+We have a temperature + humidity sensor that we can use with the Adafruit Huzzah Feather board. The board contains an ESP8266 chip with MicroPython on it.
 
 ### Deliverables
 - Demo showing sensing, processing and upload of data
@@ -34,8 +33,12 @@ Micropython documentation for ESP8266: https://docs.micropython.org/en/latest/es
 - fan-hat
 
 ### Useful Links
-MicroPy guide for ESP2866 (http://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html)
-ESP8266 SparkFun Page w/ useful links (https://www.sparkfun.com/products/13678)
-Feather Huzzah Guide (https://learn.adafruit.com/adafruit-feather-huzzah-esp8266?view=all)
-Sensor documentation (https://cdn.sparkfun.com/datasheets/Sensors/Weather/Si7021.pdf)
-Sensor SparkFun Page w/ useful links (https://learn.sparkfun.com/tutorials/si7021-humidity-and-temperature-sensor-hookup-guide)
+[MicroPy guide for ESP2866] (https://docs.micropython.org/en/latest/esp8266/index.html) (quick reference page will be v. useful)
+
+[ESP8266 SparkFun Page w/ useful links] (https://www.sparkfun.com/products/13678)
+
+[Feather Huzzah Guide] (https://learn.adafruit.com/adafruit-feather-huzzah-esp8266?view=all)
+
+[Sensor documentation] (https://cdn.sparkfun.com/datasheets/Sensors/Weather/Si7021.pdf)
+
+[Sensor SparkFun Page w/ useful links] (https://learn.sparkfun.com/tutorials/si7021-humidity-and-temperature-sensor-hookup-guide)
