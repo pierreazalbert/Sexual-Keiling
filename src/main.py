@@ -9,8 +9,8 @@ input("Press Enter to continue\n")
 i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000) #construct and initialise I2C object
 
 # read slave address of I2C sensors
-i2c_AddrList = i2c.scan()
-addr_Si7021 = i2c_AddrList[0]
+i2c_addr_list = i2c.scan()
+addr_Si7021 = i2c_addr_list[0]
 
 print("I2C address =", hex(addr_Si7021), "\n")
 if addr_Si7021 != 0x40:
