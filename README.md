@@ -35,6 +35,8 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 ### Useful Links
 [MicroPy guide for ESP2866] (https://docs.micropython.org/en/latest/esp8266/index.html) (quick reference page will be v. useful)
 
+[MicroPy I2C guide] (https://docs.micropython.org/en/latest/esp8266/library/machine.I2C.html)
+
 [ESP8266 SparkFun Page w/ useful links] (https://www.sparkfun.com/products/13678)
 
 [Feather Huzzah Guide] (https://learn.adafruit.com/adafruit-feather-huzzah-esp8266?view=all)
