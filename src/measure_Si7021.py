@@ -14,7 +14,7 @@ def measure_temp(i2c, addr_Si7021=0x40):
     time.sleep_ms(temp_minDelay) # wait for conversion to be complete
     temp_code = i2c.readfrom(0x40, 2) # read result
 
-    return (175.72 * (256*temp_code[0] + temp_code[1])/65536) - 46.85
+    return (175.72*(256*temp_code[0] + temp_code[1])/65536) - 46.85
 
 # reads humidity
 # inputs:
@@ -32,7 +32,7 @@ def measure_humi(i2c, addr_Si7021=0x40):
     time.sleep_ms(humi_minDelay) # wait for conversion to be complete
     humi_code = i2c.readfrom(addr_Si7021, 2) # read result
 
-    return (125*humi_code[0] + humi_code[1])/65536 - 6
+    return (125*(256*humi_code[0] + humi_code[1])/65536) - 6
 
 # reads temperature and humidity
 # inputs:
@@ -57,7 +57,7 @@ def measure_both(i2c, addr_Si7021=0x40):
     i2c.writeto(addr_Si7021, temp_readCommand_noMeasure) # send read command
     temp_code = i2c.readfrom(addr_Si7021, 2) # read result
 
-    humi = (125*humi_code[0] + humi_code[1])/65536 - 6
+    humi = (125*(256*humi_code[0] + humi_code[1])/65536) - 6
     temp = (175.72 * (256*temp_code[0] + temp_code[1])/65536) - 46.85
 
     return { 'temp':temp, 'humi':humi }
