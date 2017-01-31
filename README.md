@@ -31,7 +31,7 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 ### Optional tasks to get extra marks
 - [ ] Set up I2C between accelerometer and ESP8266
 - [ ] Connect battery and power switch to make device portable
-- [ ] 3D print custom casing for whole device
+- [ ] 3D print custom casing for whole device (http://www.thingiverse.com/thing:1294777)
 
 ### Useful Links
 [MicroPy guide for ESP2866] (https://docs.micropython.org/en/latest/esp8266/index.html) (quick reference page will be v. useful)
