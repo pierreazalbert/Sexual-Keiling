@@ -16,6 +16,7 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 - 16th Feb : submit code and website
 
 ### Our ideas for an IoT device
+- instrument storage
 - holiday home environment control (prevent mould etc)
 - wood drying monitor (for fireplaces)
 - pantry monitoring
