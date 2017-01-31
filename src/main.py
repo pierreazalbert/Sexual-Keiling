@@ -4,7 +4,7 @@ import measure_Si7021 # for measurement functions
 
 print("\n*************************************************************")
 print("Welcome to the Sexual Keiling Temperature and Humidity Sensor\n")
-input("Press Enter to continue")
+input("Press Enter to continue\n")
 
 i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000) #construct and initialise I2C object
 
@@ -12,9 +12,9 @@ i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000) #construct and initialise I2C objec
 i2c_AddrList = i2c.scan()
 addr_Si7021 = i2c_AddrList[0]
 
-print("\nI2C address =", hex(addr_Si7021), "\n")
+print("I2C address =", hex(addr_Si7021), "\n")
 if addr_Si7021 != 0x40:
-    print("Address should be 0x40, but is", hex(addr_Si7021), "instead")
+    print("FAILURE: Address of Si7021 should be 0x40, but is", hex(addr_Si7021), "instead\n")
     quit()
 
 while 1:
