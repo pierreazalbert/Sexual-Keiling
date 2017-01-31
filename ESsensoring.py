@@ -1,24 +1,33 @@
 from machine import Pin, I2C
+import time
 
 i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000)
 
-addr = i2c.scan()
+sensorAddr = i2c.scan()
+print("I2C address =",hex(sensorAddr[0]))
+if sensorAddr[0] != 0x40:
+    print("Address should be 0x40, but is",hex(sensorAddr[0]),"instead")
+    quit()
 
-temp_read = bytearray([243])
-humi_read = bytearray([245])
-nbytes = 2
+temp_readCommand = bytearray([0xF3])
+humi_readCommand = bytearray([0xF5])
+# RH measuement automatically also measures temperature, so takes a bit longer
+temp_minDelay = 7 #ms
+humi_minDelay = 17 #ms
 
+while 1:
+    i2c.writeto(sensorAddr[0], temp_readCommand)
+    time.sleep_ms(temp_minDelay)
+    temp_code = i2c.readfrom(0x40, 2)
 
-i2c.writeto(addr, temp_read)
+    temp_C = (175.72 * (256*temp_code[0] + temp_code[1])/65536) - 46.85
+    print("Temp measured as",temp_C,"degrees C")
 
-temp = i2c.readfrom(addr, nbytes)
+    i2c.writeto(sensorAddr[0], humi_readCommand)
+    time.sleep_ms(humi_minDelay)
+    humi_code = i2c.readfrom(sensorAddr[0], 2)
 
-(175.72 * (256*temp[0] + temp[1])/65536) - 46.85
+    humidity = (125*temp_code[0] + temp_code[1])/65536 - 6
+    print("Relative Humidity measured as",humidity,"%")
 
-
-
-
-i2c.writeto(addr, humi_read)
-
-humi = i2c.readfrom(addr, nbytes)
-
+    time.sleep_ms(500)
