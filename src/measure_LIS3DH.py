@@ -11,20 +11,22 @@ Functions to measure temperature and/or relative humidity from Si7021 I2C sensor
     acceleration for axes x, y, z
     """
 def measure_accel(i2c, addr_LIS3DH=0x18):
-    
+
     import time
-    
+
     # Select control register1, 0x20(32)
     #		0x2F        Power ON mode, Low Power enabled, Data rate 10 Hz
     #					X, Y, Z-Axis enabled
-    i2c.writeto_mem(addr_LIS3DH, 0x20, 0x2F)
-    
+    control_register_value = bytearray([0x2F])
+    i2c.writeto_mem(addr_LIS3DH, 0x20, control_register_value)
+
     # Select control register4, 0x23(35)
     #		0x00(00)	Continuous update, Full-scale selection = +/-2G
-    i2c.writeByte(addr_LIS3DH, 0x23, 0x00)
-    
+    control_register_value = bytearray([0x00])
+    i2c.writeto_mem(addr_LIS3DH, 0x23, control_register_value)
+
     time.sleep(0.5)
-    
+
     # X-Axis (LSB, MSB)
     # Read data back from 0x28(40), 2 bytes
     data0 = i2c.readfrom_mem(addr_LIS3DH, 0x28, 1)
@@ -32,7 +34,7 @@ def measure_accel(i2c, addr_LIS3DH=0x18):
     xAccl = data1[0] * 256 + data0[0]
     if xAccl > 32767 :
         xAccl -= 65536
-    
+
     # Y-Axis (LSB, MSB)
     # Read data back from 0x28(40), 2 bytes
     data0 = i2c.readfrom_mem(addr_LIS3DH, 0x2A, 1)
@@ -50,4 +52,3 @@ def measure_accel(i2c, addr_LIS3DH=0x18):
         zAccl -= 65536
 
     return xAccl, yAccl, zAccl
-
