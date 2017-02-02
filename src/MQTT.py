@@ -2,11 +2,8 @@
 Functions for MQTT with ESP8266
 """
 
-def connect_to_network():
-    import network
-
-    network_essid = '<EEERover>'
-    network_passw = '<exhibition>'
+def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition'):
+    import network, time
 
     # setup station connection - to connect ESP8266 to router
     sta_if = network.WLAN(network.STA_IF)
@@ -14,8 +11,14 @@ def connect_to_network():
         print('connecting to network...')
         sta_if.active(True)
         sta_if.connect(network_essid, network_passw)
+
+        counter = 0
         while not sta_if.isconnected():
-            pass
+            counter = counter + 1
+            if counter == 100:
+                print('could not connect to network')
+                break
+
     print('network config:', sta_if.ifconfig())
 
     # setup access point connection - so other devices can connect to ESP8266
@@ -23,11 +26,12 @@ def connect_to_network():
     ap_if.active(False) # disable automatic access point to reduce overheads
 
 
-def mqtt_publish(topic, data):
+def publish(topic, data):
     from umqtt.simple import MQTTClient
+    import machine
 
-    broker_address = '192.168.0.10'
-    topic_prefix = 'esys/<Sexual-Keiling>/'
+    broker_address = b'192.168.0.10'
+    topic_prefix = 'esys/Sexual-Keiling/'
 
     client = MQTTClient(machine.unique_id(),broker_address)
     client.connect()
