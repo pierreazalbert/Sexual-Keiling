@@ -4,8 +4,15 @@ import measure_Si7021 # for measurement functions
 import measure_LIS3DH
 from umqtt.simple import MQTTClient
 
+# set up and flash LED
+led = Pin(14,Pin.OUT)
+led.high()
+time.sleep_ms(50)
+led.low()
+
 print('\n*************************************************************')
-print('Welcome to the Sexual Keiling Temperature and Humidity Sensor\n')
+print('Welcome to the Sexual Keiling Temperature and Humidity Sensor')
+print('*************************************************************\n')
 input('Press Enter to continue\n')
 
 i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000) #construct and initialise I2C object
@@ -25,11 +32,10 @@ if addr_Si7021 != 0x40:
     quit()
 
 while 1:
-
-    result = measure_Si7021.measure_both(i2c, addr_Si7021)
+    #result = measure_Si7021.measure_both(i2c, addr_Si7021)
     x,y,z = measure_LIS3DH.measure_accel(i2c)
 
-    print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
+    #print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
     print(x, '\t', y, '\t', z)
 
-    time.sleep_ms(500)
+    time.sleep_ms(100)

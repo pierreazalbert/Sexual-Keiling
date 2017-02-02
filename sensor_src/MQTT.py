@@ -2,6 +2,14 @@
 Functions for MQTT with ESP8266
 """
 
+"""
+connects device to network
+inputs:
+    network_essid - essid of network as a string, default = 'EEERover'
+    network_passw - password of network as a string, default = 'exhibition'
+outputs:
+    none
+"""
 def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition'):
     import network, time
 
@@ -25,7 +33,14 @@ def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition')
     ap_if = network.WLAN(network.AP_IF)
     ap_if.active(False) # disable automatic access point to reduce overheads
 
-
+"""
+publishes informtation through MQTT
+inputs:
+    topic - topic of publish as a string
+    data - preferably in JSON format as a string
+outputs:
+    none
+"""
 def publish(topic, data):
     from umqtt.simple import MQTTClient
     import machine

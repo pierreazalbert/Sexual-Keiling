@@ -11,7 +11,7 @@ outputs:
     temperature in degrees C
 """
 def measure_temp(i2c, addr_Si7021=0x40):
-    import time
+    # import time
 
     measure_temp_command_code = bytearray([0xF3])
     temp_min_measurement_delay = 7 #ms, comes from datasheet
@@ -31,7 +31,6 @@ outputs:
     humidity %
 """
 def measure_humi(i2c, addr_Si7021=0x40):
-    import time
 
     measure_humi_command_code = bytearray([0xF5])
     humi_min_measurement_delay = 17 #ms, comes from datasheet
@@ -52,7 +51,6 @@ outputs:
     'humi' - humidity %
 """
 def measure_both(i2c, addr_Si7021=0x40):
-    import time
 
     measure_humi_command_code = bytearray([0xF5])
     humi_min_measurement_delay = 17 #ms, comes from datasheet
