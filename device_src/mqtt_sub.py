@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import json
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc):
@@ -9,7 +10,9 @@ def on_connect(client, userdata, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    print(msg.topic + " " + str(msg.payload))
+    msg_string = msg.payload.decode('UTF-8')
+    dict_derulo = json.loads(msg_string)
 
 client = mqtt.Client()
 client.on_connect = on_connect
