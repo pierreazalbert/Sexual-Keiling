@@ -1,7 +1,8 @@
 from machine import Pin, I2C
 import time # for sleep_ms
-import measure_Si7021 # for measurement functions
-import measure_LIS3DH
+import measure_Si7021 # for temp/RH measurement functions
+import measure_LIS3DH # for accel measurement functions
+import MQTT # for MQTT functions
 from umqtt.simple import MQTTClient
 
 # set up and flash LED
@@ -30,6 +31,8 @@ if addr_LIS3DH != 0x18:
 if addr_Si7021 != 0x40:
     print('FAILURE: Address of Si7021 should be 0x40, but is', hex(addr_Si7021), 'instead\n')
     quit()
+
+MQTT.connect_to_network('EEERover', 'exhibition')
 
 while 1:
     #result = measure_Si7021.measure_both(i2c, addr_Si7021)

@@ -20,10 +20,10 @@ def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition')
         sta_if.active(True)
         sta_if.connect(network_essid, network_passw)
 
-        counter = 0
+        timeout_counter = 0
         while not sta_if.isconnected():
-            counter = counter + 1
-            if counter == 100:
+            timeout_counter = timeout_counter + 1
+            if timeout_counter == 1000:
                 print('could not connect to network')
                 break
 
