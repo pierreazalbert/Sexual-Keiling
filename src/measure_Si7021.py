@@ -1,9 +1,15 @@
-# reads temperature
-# inputs:
-#   i2c - I2C object
-#   addr_Si7021 - slave address of sensor (int)
-# outputs
-#   temperature in degrees C
+"""
+Functions to measure temperature and/or relative humidity from Si7021 I2C sensor
+"""
+
+"""
+reads temperature
+inputs:
+    i2c - I2C object
+    addr_Si7021 - slave address of sensor (int)
+outputs:
+    temperature in degrees C
+"""
 def measure_temp(i2c, addr_Si7021=0x40):
     import time
 
@@ -16,12 +22,14 @@ def measure_temp(i2c, addr_Si7021=0x40):
 
     return (175.72*(256*temp_code[0] + temp_code[1])/65536) - 46.85
 
-# reads humidity
-# inputs:
-#   i2c - I2C object
-#   addr_Si7021 - slave address of sensor (int)
-# outputs
-#   humidity %
+"""
+reads humidity
+inputs:
+    i2c - I2C object
+    addr_Si7021 - slave address of sensor (int)
+outputs:
+    humidity %
+"""
 def measure_humi(i2c, addr_Si7021=0x40):
     import time
 
@@ -34,13 +42,15 @@ def measure_humi(i2c, addr_Si7021=0x40):
 
     return (125*(256*humi_code[0] + humi_code[1])/65536) - 6
 
-# reads temperature and humidity
-# inputs:
-#   i2c - I2C object
-#   addr_Si7021 - slave address of sensor (int)
-# outputs
-#   'temp' - temperature in degrees C
-#   'humi' - humidity %
+"""
+reads temperature and humidity
+inputs:
+    i2c - I2C object
+    addr_Si7021 - slave address of sensor (int)
+outputs:
+    'temp' - temperature in degrees C
+    'humi' - humidity %
+"""
 def measure_both(i2c, addr_Si7021=0x40):
     import time
 
