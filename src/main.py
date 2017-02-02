@@ -12,20 +12,17 @@ i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000) #construct and initialise I2C objec
 
 # read slave address of I2C sensors
 i2c_addr_list = i2c.scan()
-addr_Si7021 = i2c_addr_list[0]
+addr_LIS3DH = i2c_addr_list[0]
+addr_Si7021 = i2c_addr_list[1]
 
-print('I2C address =', hex(addr_Si7021), '\n')
+print('Accel. Sensor address =', hex(addr_LIS3DH))
+print('Temp/RH Sensor address =', hex(addr_Si7021), '\n')
+"""
 if addr_Si7021 != 0x40:
     print('FAILURE: Address of Si7021 should be 0x40, but is', hex(addr_Si7021), 'instead\n')
     quit()
-
+"""
 while 1:
-
-#    temp_C = measure_Si7021.measure_temp(i2c, addr_Si7021)
-#    print('Temp measured as', temp_C, 'degrees C')
-
-#    humidity = measure_Si7021.measure_humi(i2c, addr_Si7021)
-#    print('Relative Humidity measured as', humidity, '%')
 
     result = measure_Si7021.measure_both(i2c, addr_Si7021)
     print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
