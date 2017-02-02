@@ -46,5 +46,7 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 
 [Sensor SparkFun Page w/ useful links] (https://learn.sparkfun.com/tutorials/si7021-humidity-and-temperature-sensor-hookup-guide)
 
+[LIS3DH Acceleromter documentation] (http://www.st.com/content/ccc/resource/technical/document/datasheet/3c/ae/50/85/d6/b1/46/fe/CD00274221.pdf/files/CD00274221.pdf/jcr:content/translations/en.CD00274221.pdf)
+
 ### Our ideas for an IoT device
 instrument storage / greenhouse mointoring / holiday home environment control (prevent mould etc) / wood drying monitor (for fireplaces) / pantry monitoring / laundry drying monitor / rust n stuff / wine storage / sauna monitoring / body heat (sweat) / baby incubator / baby cradle monitor (https://blog.withings.com/2012/03/30/why-is-measuring-the-humidity-level-in-a-room-important-for-a-baby-2/) / tobacco storage (humidor) / shoe fungus prevention / home brewing, fermenting (yoghurt, etc) / biological petri dish monitor / fan-hat
