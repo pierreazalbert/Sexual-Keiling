@@ -51,3 +51,4 @@ def publish(topic, data):
     client = MQTTClient(machine.unique_id(),broker_address)
     client.connect()
     client.publish(topic_prefix + topic, bytes(data,'utf-8'))
+    client.disconnect()
