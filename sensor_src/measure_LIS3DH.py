@@ -14,7 +14,7 @@ def measure_accel(i2c, addr_LIS3DH=0x18):
     import time
 
     # to use I2C, CS pin must be tied high
-    
+
     # Select control register1, 0x20(32)
     #		0x2F        Power ON mode, Low Power enabled, Data rate 10 Hz
     #					X, Y, Z-Axis enabled
@@ -26,7 +26,7 @@ def measure_accel(i2c, addr_LIS3DH=0x18):
     control_register_value = bytearray([0x00])
     i2c.writeto_mem(addr_LIS3DH, 0x23, control_register_value)
 
-    time.sleep(0.5)
+    time.sleep(0.5) # todo check how short this can be made
 
     # X-Axis (LSB, MSB)
     # Read data back from 0x28(40), 2 bytes
