@@ -26,6 +26,8 @@ def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition')
             if timeout_counter == 1000:
                 print('could not connect to network')
                 break
+        if timeout_counter < 1000:
+            print('successfully connected to', network_essid)
 
     print('network config:', sta_if.ifconfig())
 
@@ -43,12 +45,17 @@ outputs:
 """
 def publish(topic, data):
     from umqtt.simple import MQTTClient
-    import machine
+    import machine, json
 
-    broker_address = b'192.168.0.10'
-    topic_prefix = 'esys/Sexual-Keiling/'
+    broker_address = '192.168.0.10'
+    topic_prefix = 'esys/sexual-keiling/'
 
     client = MQTTClient(machine.unique_id(),broker_address)
+    client.on_connect = on_connect
     client.connect()
     client.publish(topic_prefix + topic, bytes(data,'utf-8'))
     client.disconnect()
+    print('published: "' + data + '" to' + topic_prefix + topic)
+
+def on_connect(client, userdata, rc):
+    print("Connected with result code " + str(rc))
