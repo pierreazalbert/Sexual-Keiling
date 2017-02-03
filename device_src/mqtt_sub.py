@@ -15,6 +15,11 @@ def on_message(client, userdata, msg):
     msg_string = msg.payload.decode('UTF-8')
     dict_derulo = json.loads(msg_string)
 
+print('\n******************************************')
+print('Welcome to the Sexual Keiling MQTT monitor')
+print('******************************************\n')
+print('Are you connected to the EEERover wifi?')
+input('Press Enter to continue\n')
 
 broker_address = '192.168.0.10'
 #broker_address = 'iot.eclipse.org'
