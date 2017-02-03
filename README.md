@@ -50,3 +50,6 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 
 ### Our ideas for an IoT device
 instrument storage / greenhouse mointoring / holiday home environment control (prevent mould etc) / wood drying monitor (for fireplaces) / pantry monitoring / laundry drying monitor / rust n stuff / wine storage / sauna monitoring / body heat (sweat) / baby incubator / baby cradle monitor (https://blog.withings.com/2012/03/30/why-is-measuring-the-humidity-level-in-a-room-important-for-a-baby-2/) / tobacco storage (humidor) / shoe fungus prevention / home brewing, fermenting (yoghurt, etc) / biological petri dish monitor / fan-hat
+
+### Chosen Device
+Instrument Storage Monitor - Will monitor temperature + humidity within instrument case and will warn user via phone or laptop notification or email, if these values are reached dangerous levels. Also includes accelerometer and will warn user if a drop or bump is detected. Also has an on/off switch and an LED.
