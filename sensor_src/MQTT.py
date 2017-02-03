@@ -30,7 +30,7 @@ def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition')
                 return False
             time.sleep_ms(1)
         if timeout_counter < timeout_limit:
-            print('successfully connected to', network_essid, timeout_counter)
+            print('successfully connected to', network_essid, 'in', timeout_counter, 'ms')
 
     print('network config:', sta_if.ifconfig())
 
@@ -60,8 +60,14 @@ def publish(data):
     client.disconnect()
     print('published: "' + data + '" to ' + topic)
 
-
-
+"""
+publishes dict with temp and humi informtation through MQTT
+inputs:
+    temp - temperature value
+    humi - humidity value
+outputs:
+    none
+"""
 def publish_temp_humi(temp, humi):
     import json
 
@@ -71,5 +77,6 @@ def publish_temp_humi(temp, humi):
     }
     publish(json.dumps(json_derulo))
 
+# runs when successful connection to server is made
 def on_connect(client, userdata, rc):
     print("Connected with result code " + str(rc))

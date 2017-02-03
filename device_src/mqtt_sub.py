@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import json
 
-# The callback for when the client receives a CONNACK response from the server.
+# runs when successful connection to server is made
 def on_connect(client, userdata, rc):
     print("Connected with result code " + str(rc))
     # Subscribing in on_connect() means that if we lose the connection and
@@ -9,7 +9,7 @@ def on_connect(client, userdata, rc):
     client.subscribe(topic_prefix)
     print("subscribed to", topic_prefix)
 
-# The callback for when a PUBLISH message is received from the server.
+# runs when message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     msg_string = msg.payload.decode('UTF-8')
@@ -24,6 +24,7 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
+# todo check paho doc for a way to save this from infinite loop if no connection is made
 client.connect(broker_address)
 
 # Blocking call that processes network traffic, dispatches callbacks and

@@ -34,14 +34,16 @@ if addr_Si7021 != 0x40:
 
 time.sleep_ms(500)
 
-MQTT.connect_to_network()
+if not MQTT.connect_to_network():
+    print('FAILED: Could not connect to EEERover WiFi')
+else:
+    # do sensing and publishing loop
+    while 1:
+        result = measure_Si7021.measure_both(i2c, addr_Si7021)
+        x,y,z = measure_LIS3DH.measure_accel(i2c)
 
-while 1:
-    result = measure_Si7021.measure_both(i2c, addr_Si7021)
-    x,y,z = measure_LIS3DH.measure_accel(i2c)
+        #print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
+        print(x, '\t', y, '\t', z)
+        MQTT.publish_temp_humi(result['temp'], result['humi'])
 
-    #print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
-    print(x, '\t', y, '\t', z)
-    MQTT.publish_temp_humi(result['temp'], result['humi'])
-
-    time.sleep_ms(100)
+        time.sleep_ms(100)
