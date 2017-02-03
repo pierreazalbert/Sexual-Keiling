@@ -1,5 +1,5 @@
 # Sexual-Keiling
-EE3-24 Embedded Systems - Lloyd Abbott, Pierre Azalbert, Jukka Hertzog, Periklis Korkontzelos
+EE3-24 Embedded Systems - Lloyd Abbott, Pierre Azalbert, Jukka Hertzog
 
 ## Coursework 1 - IoT project
 
@@ -24,7 +24,7 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 
 ### Work to be done
 - [x] Set up I2C between humidity/temperature sensor and ESP8266
-- [ ] Set up MQQT Wi-Fi protocol to send sensor data over the air - example code [here](http://www.ev3dev.org/docs/tutorials/sending-and-receiving-messages-with-mqtt/)
+- [x] Set up MQQT Wi-Fi protocol to send sensor data over the air - example code [here](http://www.ev3dev.org/docs/tutorials/sending-and-receiving-messages-with-mqtt/)
 - [ ] Write code on desktop/laptop to receive sensor data, store it and process it (database? thresholds and alerts?)
 - [ ] Make demo (static or functional) or mobile app to show live sensor data and alerts/notifications
 
