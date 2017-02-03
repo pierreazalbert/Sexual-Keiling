@@ -12,8 +12,8 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
-    #msg_string = msg.payload.decode('UTF-8')
-    #dict_derulo = json.loads(msg_string)
+    msg_string = msg.payload.decode('UTF-8')
+    dict_derulo = json.loads(msg_string)
 
 
 broker_address = '192.168.0.10'

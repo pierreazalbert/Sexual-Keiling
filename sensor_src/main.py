@@ -32,13 +32,16 @@ if addr_Si7021 != 0x40:
     print('FAILURE: Address of Si7021 should be 0x40, but is', hex(addr_Si7021), 'instead\n')
     quit()
 
-MQTT.connect_to_network('EEERover', 'exhibition')
+time.sleep_ms(500)
+
+MQTT.connect_to_network()
 
 while 1:
-    #result = measure_Si7021.measure_both(i2c, addr_Si7021)
+    result = measure_Si7021.measure_both(i2c, addr_Si7021)
     x,y,z = measure_LIS3DH.measure_accel(i2c)
 
     #print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
     print(x, '\t', y, '\t', z)
+    MQTT.publish_temp_humi(result['temp'], result['humi'])
 
     time.sleep_ms(100)
