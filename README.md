@@ -11,9 +11,8 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 - Website* marketing concept for product
 
 ### Timetable
-- 2nd Feb: Lab on wifi
-- 9th Feb: demo of project
-- 16th Feb : submit code and website
+- 16th Feb (Thurs at 09:00): demo of project
+- 20th Feb (Mon at 17:00) : submit code and website
 
 ### Our concept: an instrument temperature/humidity/impact monitor
 - Embedded system comprising of a temperature/humidity sensor, an accelerometer, a battery and a power switch (+ Huzzah Feather ESP8266)
