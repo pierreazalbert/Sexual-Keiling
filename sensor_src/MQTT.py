@@ -53,6 +53,7 @@ def publish(data):
     broker_address = '192.168.0.10'
     topic = 'esys/sexual-keiling/'
 
+	# connect, publish and disconnect
     client = MQTTClient(machine.unique_id(),broker_address)
     client.on_connect = on_connect
     client.connect()
@@ -75,7 +76,7 @@ def publish_temp_humi(temp, humi):
         'temp': temp,
         'humi': humi
     }
-    publish(json.dumps(json_derulo))
+    publish(json.dumps(json_derulo)) # publish json obj as a string
 
 # runs when successful connection to server is made
 def on_connect(client, userdata, rc):

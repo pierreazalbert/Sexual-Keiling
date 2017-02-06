@@ -67,6 +67,7 @@ def measure_both(i2c, addr_Si7021=0x40):
     i2c.writeto(addr_Si7021, read_temp_command_code_noMeasure) # send read command
     temp_code = i2c.readfrom(addr_Si7021, 2) # read result
 
+	# convert from code values to actual values
     humi = (125*(256*humi_code[0] + humi_code[1])/65536) - 6
     temp = (175.72 * (256*temp_code[0] + temp_code[1])/65536) - 46.85
 
