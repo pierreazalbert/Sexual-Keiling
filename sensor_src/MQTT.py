@@ -75,7 +75,25 @@ def publish_temp_humi(temp, humi):
 
     json_derulo = {
         'temp': temp,
-        'humi': humi
+        'humi': humi,
+    }
+    publish(json.dumps(json_derulo)) # publish json obj as a string
+
+"""
+publishes dict with temp and humi informtation through MQTT
+inputs:
+    temp - temperature value
+    humi - humidity value
+outputs:
+    none
+"""
+def publish_packet(temp, humi, max_accel):
+    import json
+
+    json_derulo = {
+        'temp': temp,
+        'humi': humi,
+        'max_accel': max_accel
     }
     publish(json.dumps(json_derulo)) # publish json obj as a string
 

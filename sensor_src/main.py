@@ -14,7 +14,6 @@ led.low()
 print('\n*************************************************************')
 print('Welcome to the Sexual Keiling Temperature and Humidity Sensor')
 print('*************************************************************\n')
-input('Press Enter to continue\n')
 
 i2c = I2C(scl=Pin(5),sda=Pin(4),freq=100000) #construct and initialise I2C object
 
@@ -42,9 +41,9 @@ else:
     while 1:
         result = measure_Si7021.measure_both(i2c, addr_Si7021)
         x,y,z = measure_LIS3DH.measure_accel(i2c)
+        max_accel = max(abs(x),abs(y),abs(z))
 
         #print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
-        print(x, '\t', y, '\t', z)
-        MQTT.publish_temp_humi(result['temp'], result['humi'])
-
+        #MQTT.publish_temp_humi(result['temp'], result['humi'])
+        MQTT.publish_packet(result['temp'], result['humi'], max_accel)
         time.sleep_ms(100) # pause between loops
