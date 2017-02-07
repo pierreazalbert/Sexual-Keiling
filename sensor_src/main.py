@@ -27,14 +27,16 @@ addr_Si7021 = i2c_addr_list[1]
 print('Accel. Sensor address =', hex(addr_LIS3DH))
 print('Temp/RH Sensor address =', hex(addr_Si7021), '\n')
 if addr_LIS3DH != 0x18:
-    print('FAILURE: Address of Si7021 should be 0x18, but is', hex(addr_LIS3DH), 'instead\n')
+    print('FAILURE: address of Si7021 should be 0x18, but is', hex(addr_LIS3DH), 'instead\n')
 if addr_Si7021 != 0x40:
-    print('FAILURE: Address of Si7021 should be 0x40, but is', hex(addr_Si7021), 'instead\n')
+    print('FAILURE: address of Si7021 should be 0x40, but is', hex(addr_Si7021), 'instead\n')
 
-time.sleep_ms(500)
+measure_LIS3DH.init_accel(i2c, addr_LIS3DH)
+
 
 if not MQTT.connect_to_network():
-    print('FAILED: Could not connect to EEERover WiFi')
+    print('FAILURE: could not connect to EEERover WiFi')
+
 else:
     # do sensing and publishing loop
     while 1:
