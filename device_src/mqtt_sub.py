@@ -39,3 +39,4 @@ client.connect(broker_address)
 #client.loop_forever()
 while 1:
     client.loop(1.0)
+    
