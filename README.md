@@ -45,6 +45,8 @@ We have a temperature + humidity sensor that we can use with the Adafruit Huzzah
 
 [Sensor SparkFun Page w/ useful links] (https://learn.sparkfun.com/tutorials/si7021-humidity-and-temperature-sensor-hookup-guide)
 
+[LIS3DH Application Note by ST](http://www.st.com/content/ccc/resource/technical/document/application_note/77/ed/e7/e1/28/5a/45/d6/CD00290365.pdf/files/CD00290365.pdf/jcr:content/translations/en.CD00290365.pdf)
+
 [LIS3DH Acceleromter documentation] (http://www.st.com/content/ccc/resource/technical/document/datasheet/3c/ae/50/85/d6/b1/46/fe/CD00274221.pdf/files/CD00274221.pdf/jcr:content/translations/en.CD00274221.pdf)
 
 ### Our ideas for an IoT device

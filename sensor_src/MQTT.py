@@ -13,10 +13,10 @@ outputs:
 def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition'):
     import network, time
 
+    print('connecting to network...')
     # setup station connection - to connect ESP8266 to router
     sta_if = network.WLAN(network.STA_IF)
     if not sta_if.isconnected():
-        print('connecting to network...')
         sta_if.active(True)
         sta_if.connect(network_essid, network_passw)
 
@@ -30,9 +30,10 @@ def connect_to_network(network_essid = 'EEERover', network_passw = 'exhibition')
                 return False
             time.sleep_ms(1)
         if timeout_counter < timeout_limit:
-            print('successfully connected to', network_essid, 'in', timeout_counter, 'ms')
+            print('\tsuccessfully connected to', network_essid, 'in', timeout_counter, 'ms')
 
-    print('network config:', sta_if.ifconfig())
+    print('\tnetwork config:', sta_if.ifconfig())
+    print('\tcomplete\n')
 
     # setup access point connection - so other devices can connect to ESP8266
     ap_if = network.WLAN(network.AP_IF)
@@ -74,7 +75,25 @@ def publish_temp_humi(temp, humi):
 
     json_derulo = {
         'temp': temp,
-        'humi': humi
+        'humi': humi,
+    }
+    publish(json.dumps(json_derulo)) # publish json obj as a string
+
+"""
+publishes dict with temp and humi informtation through MQTT
+inputs:
+    temp - temperature value
+    humi - humidity value
+outputs:
+    none
+"""
+def publish_packet(temp, humi, max_accel):
+    import json
+
+    json_derulo = {
+        'temp': temp,
+        'humi': humi,
+        'max_accel': max_accel
     }
     publish(json.dumps(json_derulo)) # publish json obj as a string
 
