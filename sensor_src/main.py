@@ -34,15 +34,13 @@ if addr_Si7021 != 0x40:
 measure_LIS3DH.init_accel(i2c, addr_LIS3DH)
 #result = measure_Si7021.measure_both(i2c, addr_Si7021)
 
+time_set = False
+
 if not MQTT.connect_to_network():
     print('FAILURE: could not connect to EEERover WiFi')
 
 else:
-    #timer_Si7021 = pyb.Timer(1, freq = 1)
-    #timer_publish = pyb.Timer(2, freq = 1)
-
-    #timer_Si7021.callback(measure_Si7021.measure_both(i2c, addr_Si7021))
-    #timer_publish.callback(MQTT.publish_packet(result['temp'], result['humi'], max_accel))
+    time_client = MQTT.subscribe_time()
 
     # do sensing and publishing loop
     while 1:
@@ -52,6 +50,13 @@ else:
 
         #print('RH measured as', result['humi'], '%, \t temp measured as', result['temp'], 'oC')
         #MQTT.publish_temp_humi(result['temp'], result['humi'])
-        MQTT.publish_packet(result['temp'], result['humi'], max_accel)
+        #MQTT.publish_packet(result['temp'], result['humi'], max_accel)
+
+        if time_set == False:
+            time_set, datetime = MQTT.check_time(time_client)
+            if time_set == True:
+                led.high()
+                
+            else:
+                print('not yet')
         time.sleep_ms(500) # pause between loops
-        # set up and flash LED

@@ -2,6 +2,9 @@
 Functions for MQTT with ESP8266
 """
 
+message_received = False
+time_string = ''
+
 """
 connects device to network
 inputs:
@@ -52,14 +55,13 @@ def publish(data):
     import machine
 
     broker_address = '192.168.0.10'
-    topic = 'esys/sexual-keiling/'
+    topic = 'esys/sexual-keiling'
 
 	# connect, publish and disconnect
     client = MQTTClient(machine.unique_id(),broker_address)
-    client.on_connect = on_connect
     client.connect()
     client.publish(topic, bytes(data,'utf-8'))
-    client.disconnect()
+    client.disconnect() # connect and disconnect each time to save resources
     print('published: "' + data + '" to ' + topic)
 
 """
@@ -97,6 +99,44 @@ def publish_packet(temp, humi, max_accel):
     }
     publish(json.dumps(json_derulo)) # publish json obj as a string
 
-# runs when successful connection to server is made
-def on_connect(client, userdata, rc):
-    print("Connected with result code " + str(rc))
+"""
+publishes informtation through MQTT
+inputs:
+    data - preferably in JSON format as a string
+outputs:
+    none
+"""
+def subscribe_time():
+    from umqtt.simple import MQTTClient
+    import machine
+
+    broker_address = '192.168.0.10'
+    topic = 'esys/time'
+    #topic = b'esys/sexual-keiling'
+
+	# connect, subscribe, check and disconnect
+    client = MQTTClient(machine.unique_id(),broker_address)
+    client.set_callback(sub_callback) # set sub_callback to run when message is received
+    client.connect()
+    client.subscribe(topic)
+
+    return client
+
+def check_time(client):
+    from umqtt.simple import MQTTClient
+
+    client.check_msg() # check for message
+    if message_received == True: # once time has been received, disconnect
+        client.disconnect()
+
+    print(message_received, time_string)
+
+    return message_received, time_string
+
+def sub_callback(topic, msg):
+    print((topic, msg))
+
+    global message_received
+    message_received = True
+    global time_string
+    time_string = msg
