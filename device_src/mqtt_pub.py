@@ -13,8 +13,11 @@ json_derulo = {
 
 print(json_derulo)
 
+broker_address = '192.168.0.10'
+topic = 'esys/sexual-keiling'
+
 client = mqtt.Client()
 client.on_connect = on_connect
-client.connect("iot.eclipse.org", 1883, 60)
-client.publish('hello/', json.dumps(json_derulo))
+client.connect(broker_address)
+client.publish(topic, json.dumps(json_derulo))
 client.loop(2) #timeout = 2s

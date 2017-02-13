@@ -40,7 +40,7 @@ print('Are you connected to the EEERover wifi?')
 
 broker_address = '192.168.0.10'
 #broker_address = 'iot.eclipse.org' # test server
-topic_prefix = 'esys/sexual-keiling/'
+topic_prefix = 'esys/sexual-keiling'
 
 client = mqtt.Client()
 client.on_connect = on_connect

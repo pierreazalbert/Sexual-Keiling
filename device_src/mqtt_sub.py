@@ -6,7 +6,7 @@ def on_connect_data(client, userdata, rc):
     print("Connected with result code " + str(rc))
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    topic_data = 'esys/sexual-keiling/'
+    topic_data = 'esys/sexual-keiling'
     client.subscribe(topic_data)
     print("subscribed to", topic_data)
 
