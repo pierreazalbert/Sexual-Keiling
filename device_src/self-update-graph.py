@@ -56,50 +56,50 @@ client.connect(broker_address)
 
 def animate(i):
     global df
-    
-    # get messages from mqtt broker
+
+    # get messages from mqtt broker with 1s timeout
     client.loop(1.0)
-    
+
     # append each new message to pandas dataframe
     newline = pd.DataFrame(data).T
     df = df.append(newline)
-    
+
     # keep only last 24 hours of data
     if len(df.index) > 24*60*60*60:
         df.drop(df.iloc[0].name, inplace=True)
 
     if df.empty is False:
-        
+
         # clear whole figure before re-drawing
         ax1.clear()
         ax2.clear()
         ax3.clear()
-        
+
         # plot dataframe containing humidity, temperature and acceleration data
         df.plot(ax=[ax1, ax2, ax3], subplots=True)
-        
+
         # format axis 1 - humidity
         ax1.set_ylim(0,100)
         ax1.set_ylabel('Humidity (%)', fontsize=15)
         ax1.legend().set_visible(False)
-        
+
         # format axis 2 - acceleration
         ax2.set_ylim(0,16)
         ax2.set_ylabel('Acceleration (%)', fontsize=15)
         ax2.legend().set_visible(False)
-        
+
         # format axis 3 - temperature
-        ax3.set_ylim(0,40)
+        ax3.set_ylim(25,35)
         ax3.set_ylabel('Temperature (%)', fontsize=15)
         ax3.set_xlabel('Time', fontsize=15)
         ax3.legend().set_visible(False)
-        
+
         # get reference to x-axis and format major xtick label
         xaxis = plt.gca().get_xaxis()
         xaxis.set_major_formatter(dates.DateFormatter('%H:%M:%S'))
 
     else:
-        print 'Initialising live graph...'
+        print('Initialising live graph...')
 
 
 #    plotly_fig = tls.mpl_to_plotly(fig)
@@ -109,4 +109,3 @@ def animate(i):
 
 ani = animation.FuncAnimation(fig, animate, interval=1000)
 plt.show()
-
