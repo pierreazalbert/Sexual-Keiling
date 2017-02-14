@@ -75,7 +75,7 @@ def animate(i):
         ax1.clear()
         ax2.clear()
         ax3.clear()
-        
+
         # plot dataframe containing humidity, temperature and acceleration data
         df.plot(ax=[ax1, ax2, ax3], subplots=True)
 
@@ -85,12 +85,12 @@ def animate(i):
         ax1.legend().set_visible(False)
 
         # format axis 2 - acceleration
-        ax2.set_ylim(0,16)
+        ax2.set_ylim(0,128)
         ax2.set_ylabel('Acceleration (%)', fontsize=15)
         ax2.legend().set_visible(False)
 
         # format axis 3 - temperature
-        ax3.set_ylim(25,35)
+        ax3.set_ylim(25,40)
         ax3.set_ylabel('Temperature (%)', fontsize=15)
         ax3.set_xlabel('Time', fontsize=15)
         ax3.legend().set_visible(False)
