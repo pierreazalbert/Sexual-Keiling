@@ -30,7 +30,7 @@ def init_accel(i2c, addr_LIS3DH=0x18):
     i2c.writeto_mem(addr_LIS3DH, 0x23, control_register4_value)
 
     time.sleep(0.5) # todo check how short this can be made
-    print('\tcomplete')
+    print('\tcomplete\n')
 
 """
 reads 3 axis accelerometer
