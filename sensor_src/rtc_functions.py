@@ -14,7 +14,6 @@ def parse_datetime_string(datetime_str_full):
     date_str, time_str = datetime_str.split(' ')
     year_str, mon_str, day_str = date_str.split('-')
     hour_str, min_str, sec_str = time_str.split(':')
-    print(year_str, mon_str, day_str, hour_str, min_str, sec_str)
     datetime_tuple = (int(year_str), int(mon_str), int(day_str), int(0), int(hour_str), int(min_str), int(sec_str), int(0))
 
     rtc = RTC() # set up clock object
