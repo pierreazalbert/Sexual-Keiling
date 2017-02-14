@@ -112,7 +112,7 @@ def check_time(client):
     client.check_msg() # check for message
     if is_time_received == True: # once time has been received, disconnect
         client.disconnect()
-        print(time_string)
+        #print(time_string)
 
     return is_time_received, time_string
 
