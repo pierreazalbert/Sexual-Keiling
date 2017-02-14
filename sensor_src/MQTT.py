@@ -2,7 +2,7 @@
 Functions for MQTT with ESP8266
 """
 
-message_received = False
+is_time_received = False
 time_string = ''
 
 """
@@ -89,13 +89,14 @@ inputs:
 outputs:
     none
 """
-def publish_packet(temp, humi, max_accel):
+def publish_packet(temp, humi, max_accel, datetime): 
     import json
 
     json_derulo = {
         'temp': temp,
         'humi': humi,
-        'max_accel': max_accel
+        'max_accel': max_accel,
+        'datetime': datetime
     }
     publish(json.dumps(json_derulo)) # publish json obj as a string
 
@@ -126,17 +127,19 @@ def check_time(client):
     from umqtt.simple import MQTTClient
 
     client.check_msg() # check for message
-    if message_received == True: # once time has been received, disconnect
+    if is_time_received == True: # once time has been received, disconnect
         client.disconnect()
+        print(time_string)
 
-    print(message_received, time_string)
-
-    return message_received, time_string
+    return is_time_received, time_string
 
 def sub_callback(topic, msg):
+    import json
     print((topic, msg))
 
-    global message_received
-    message_received = True
+    global is_time_received
+    is_time_received = True
     global time_string
-    time_string = msg
+    time_json_string = msg.decode('UTF-8')
+    time_json = json.loads(time_json_string)
+    time_string = time_json['date']
