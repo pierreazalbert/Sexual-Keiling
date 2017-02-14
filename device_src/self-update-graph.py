@@ -29,9 +29,9 @@ def on_connect(client, userdata, rc):
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     msg_string = msg.payload.decode('UTF-8')
-    dict_derulo = json.loads(msg_string)
+    message = json.loads(msg_string)
     global data
-    data = {datetime.datetime.now():dict_derulo}
+    data = { message['datetime'] : {key: message[key] for key in ['humi', 'temp', 'max_accel']} }
 
 print('\n******************************************')
 print('Welcome to the Sexual Keiling MQTT monitor')
@@ -61,8 +61,9 @@ def animate(i):
     client.loop(1.0)
 
     # append each new message to pandas dataframe
-    newline = pd.DataFrame(data).T
+    newline = pd.DataFrame.from_dict(data, orient='index')
     df = df.append(newline)
+    df.index = pd.DatetimeIndex(df.index)
 
     # keep only last 24 hours of data
     if len(df.index) > 24*60*60*60:
@@ -74,7 +75,7 @@ def animate(i):
         ax1.clear()
         ax2.clear()
         ax3.clear()
-
+        
         # plot dataframe containing humidity, temperature and acceleration data
         df.plot(ax=[ax1, ax2, ax3], subplots=True)
 
@@ -95,11 +96,12 @@ def animate(i):
         ax3.legend().set_visible(False)
 
         # get reference to x-axis and format major xtick label
-        xaxis = plt.gca().get_xaxis()
-        xaxis.set_major_formatter(dates.DateFormatter('%H:%M:%S'))
+        #xaxis = plt.gca().get_xaxis()
+        #xaxis.set_major_formatter(dates.DateFormatter('%H:%M:%S'))
+        #xaxis.xaxis_date()
 
     else:
-        print('Initialising live graph...')
+        print('Waiting for data...')
 
 
 #    plotly_fig = tls.mpl_to_plotly(fig)

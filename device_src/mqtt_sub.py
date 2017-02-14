@@ -29,7 +29,7 @@ print('\n******************************************')
 print('Welcome to the Sexual Keiling MQTT monitor')
 print('******************************************\n')
 print('Are you connected to the EEERover wifi?')
-input('Press Enter to continue\n')
+#input('Press Enter to continue\n')
 
 broker_address = '192.168.0.10'
 
