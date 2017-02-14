@@ -1,4 +1,10 @@
-# parses string in  rfc 3339 format
+"""
+parses string in  rfc 3339 format
+input:
+    datetime_str_full - string containing datetime in rfc 3339
+output:
+    rtc - RTC object that has been set with current time
+"""
 def parse_datetime_string(datetime_str_full):
     from machine import RTC
 
@@ -16,6 +22,13 @@ def parse_datetime_string(datetime_str_full):
 
     return rtc
 
+"""
+returns current time as string in  rfc 3339 format
+input:
+    datetime_str_full - string containing datetime in rfc 3339
+output:
+    rtc - RTC object that has been set with current time
+"""
 def get_time_string(rtc):
     from machine import RTC
 
