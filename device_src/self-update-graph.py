@@ -7,12 +7,15 @@ import matplotlib.animation as animation
 import matplotlib.dates as dates
 from termcolor import colored, cprint
 
+# global dictionnary to access message from all functions easily
 global data
 data = {}
 
+# global pandas dataframe to access data log from all functions easily
 global df
 df = pd.DataFrame()
 
+# initialise live plot
 fig, [ax1, ax2, ax3] = plt.subplots(3, 1, sharex=True, sharey=False)
 fig.set_dpi(300)
 fig.set_size_inches(15,8)
@@ -53,11 +56,7 @@ client.on_message = on_message
 # todo check paho doc for a way to save this from infinite loop if no connection is made
 client.connect(broker_address)
 
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
-
+# function to determine message to show according to humidity data received
 def humidity_status():
     if df['humi'].iloc[-1] > 65:
         status = 'Too humid'
@@ -79,6 +78,7 @@ def humidity_status():
         color = 'orange'
     return status, color
 
+# function to determine message to show according to accelerometer data received
 def movement_status():
     if df['accel_var'].iloc[-1] < -50:
         status = 'Impact'
@@ -94,6 +94,7 @@ def movement_status():
         color = 'green'
     return status, color
 
+# function to determine message to show according to temperature data received
 def temperature_status():
     if df['temp'].iloc[-1] > 30:
         status = 'Too hot'
@@ -115,6 +116,7 @@ def temperature_status():
         color = 'orange'
     return status, color
 
+# matplotlib function that will be used to update the graph
 def animate(i):
     global df
 
@@ -133,6 +135,8 @@ def animate(i):
     if df.empty is False:
         
         df.drop_duplicates()
+        
+        # calculate instantaneous derivatives of each signal
         df['humi_var'] = df['humi'].diff().apply(lambda x: x**2).rolling(50).max()
         df['temp_var'] = df['temp'].diff().apply(lambda x: x**2).rolling(50).max()
         df['accel_var'] = df['max_accel'].diff()#.rolling(5).std()
@@ -186,6 +190,7 @@ def animate(i):
         ax3.axhspan(25,30, facecolor='orange', alpha=0.3)
         ax3.axhspan(30,ax3.get_ylim()[1], facecolor='r', alpha=0.3)
 
+        # display status message next to humidity subplot
         status, color = humidity_status()
         ax1.text(1.02, 0.6, 'Humidity',
                  verticalalignment='center', horizontalalignment='left',
@@ -196,6 +201,7 @@ def animate(i):
                  transform=ax1.transAxes,
                  color=color, fontsize=20)
 
+        # display status message next to movement subplot
         status, color = movement_status()
         ax2.text(1.02, 0.6, 'Movement',
                  verticalalignment='center', horizontalalignment='left',
@@ -206,6 +212,7 @@ def animate(i):
                  transform=ax2.transAxes,
                  color=color, fontsize=20)
 
+        # display status message next to temperature subplot
         status, color = temperature_status()
         ax3.text(1.02, 0.6, 'Temperature',
                  verticalalignment='center', horizontalalignment='left',
@@ -219,5 +226,6 @@ def animate(i):
     else:
         print('Waiting for data...')
 
+# animate plot by updating it using the animate() function every 0.5 seconds
 ani = animation.FuncAnimation(fig, animate, interval=500)
 plt.show()
